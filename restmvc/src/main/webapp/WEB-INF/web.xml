@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+	<display-name>restmvc</display-name>
+	<context-param>
+		<param-name>javax.faces.SKIP_COMMENTS</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<context-param>
+		<param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<context-param>
+		<param-name>javax.faces.PROJECT_STAGE</param-name>
+		<!-- <param-value>Production</param-value> -->
+		<param-value>Development</param-value>
+	</context-param>
+
+	<filter>
+		<filter-name>GzipFilter</filter-name>
+		<filter-class>net.sf.ehcache.constructs.web.filter.GzipFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>GzipFilter</filter-name>
+		<url-pattern>*.css</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>GzipFilter</filter-name>
+		<url-pattern>*.js</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>GzipFilter</filter-name>
+		<url-pattern>/app/*</url-pattern>
+	</filter-mapping>
+
+	<servlet>
+		<servlet-name>htmlCompressorFacesServlet</servlet-name>
+		<servlet-class>com.github.restmvc.servlet.HtmlCompressorFacesServlet</servlet-class>
+		<!-- The following are the init params and the default settings -->
+		<!-- <init-param> -->
+		<!-- <param-name>HtmlCompressorFacesServlet.COMPRESS_CSS</param-name> -->
+		<!-- <param-value>true</param-value> -->
+		<!-- </init-param> -->
+		<!-- <init-param> -->
+		<!-- <param-name>HtmlCompressorFacesServlet.COMPRESS_JAVASCRIPT</param-name> -->
+		<!-- <param-value>true</param-value> -->
+		<!-- </init-param> -->
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>htmlCompressorFacesServlet</servlet-name>
+		<url-pattern>*.xhtml</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>facesServlet</servlet-name>
+		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>facesServlet</servlet-name>
+		<url-pattern>/javax.faces.resource/*</url-pattern>
+	</servlet-mapping>
+
+	<mime-mapping>
+		<extension>xhtml</extension>
+		<mime-type>application/xhtml+xml</mime-type>
+	</mime-mapping>
+
+	<session-config>
+		<session-timeout>30</session-timeout>
+	</session-config>
+
+	<error-page>
+		<error-code>403</error-code>
+		<location>/app/view/error</location>
+	</error-page>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/app/view/error</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/app/view/error</location>
+	</error-page>
+	<error-page>
+		<exception-type>java.lang.RuntimeException</exception-type>
+		<location>/app/view/error</location>
+	</error-page>
+</web-app>

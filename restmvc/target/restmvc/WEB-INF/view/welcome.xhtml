@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="../template/viewTemplate.xhtml">
+
+	<ui:define name="viewTitle">Welcome</ui:define>
+
+	<ui:define name="mainContent">
+		<h3>The RESTMVC Web application is running.</h3>
+		<section>
+			<p>This JEE6 Web application has the following features.</p>
+			<ul>
+				<li>JAX-RS with Jersey is used as the Controller</li>
+				<li>JPA Entity POJOs with JSON annotations are used as the Model</li>
+				<li>Stateless JSF/Facelets templates are used as the View</li>
+				<li>The Jersey View API is used as the glue between the Controller and the View</li>
+				<li>JAX-RS extensions with the Jackson JSON API are used to consume and produce between JSON and the Model</li>
+				<li>Stateless Session EJB services with EJB lite are integrated into the JAX-RS views and resources</li>
+				<li>Contexts and Dependency Injection with managed beans are utilized throughout</li>
+				<li>Semantic HTML5 mark-up</li>
+				<li>CSS3 Responsive Web Design</li>
+				<li>Modernizr and jQuery JavaScript libraries</li>
+				<li>Production mode features for browser performance</li>
+			</ul>
+		</section>
+	</ui:define>
+
+</ui:composition>
