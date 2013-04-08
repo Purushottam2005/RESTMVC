@@ -1,7 +1,7 @@
 RESTMVC
 =======
 
-The Concept behind this JEE6 Maven WAR project is to utilize the standards in a state-less light weight manner to produce rich Web applications that are viewable on any device. You can find more detail about this project in the [Wiki pages](https://github.com/ericrglass/RESTMVC/wiki).
+The Concept behind this JEE6 Maven WAR project\prototype is to utilize the standards in a state-less light weight manner to produce rich Web applications that are viewable on any device. The purpose of this prototype is to be a pattern of behavior that can be copied for use in a production Web application. You can find more detail about this project in the [Wiki pages](https://github.com/ericrglass/RESTMVC/wiki).
 
 The features of this RESTful MVC are as follows
 -----------------------------------------------
