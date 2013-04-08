@@ -30,6 +30,22 @@ public class AssetBean {
 		return getJsUrl("jquery-1.9.1.min.js");
 	}
 
+	public String getJqueryDataTablesJsUrl() {
+		return getJsUrl("jquery.dataTables-1.9.4.min.js");
+	}
+
+	public String getJqueryJsonJsUrl() {
+		return getJsUrl("jquery.json-2.4.min.js");
+	}
+
+	public String getJqueryRestJsUrl() {
+		return getJsUrl("jquery.rest-0.0.4.min.js");
+	}
+
+	public String getJquerySerializeJsonJsUrl() {
+		return getJsUrl("jquery.serializeJSON-1.0.1.min.js");
+	}
+
 	public String getModernizrJsUrl() {
 		return getJsUrl("modernizr-2.6.2.min.js");
 	}
