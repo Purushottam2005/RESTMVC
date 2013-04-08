@@ -9,6 +9,7 @@ The features of this RESTful MVC are as follows
 * JAX-RS 1.0 with Jersey is used as the Controller
 * JPA 2.0 Entity POJOs with JSON annotations are used as the Model
 * State-less JSF 2.1/Facelets templates and composite components are used as the View
+* Utilizes the JSF 2 utilities library [omnifaces](https://code.google.com/p/omnifaces/)
 * The Jersey View API is used as the glue between the Controller and the View
 * JAX-RS extensions with the Jackson JSON API are used to consume and produce between JSON and the Model
 * JSON is utilize in the initial rendering and for AJAX partial page rendering
@@ -16,7 +17,7 @@ The features of this RESTful MVC are as follows
 * Contexts and Dependency Injection (CDI 1.0) with managed beans are utilized throughout
 * Rendering semantic HTML5 mark-up
 * Responsive Web Design with CSS3 and SASS with a goal of being mobile first
-* Utilizes Modernizr and jQuery JavaScript libraries
+* Utilizes [Modernizr](http://modernizr.com/) and [jQuery](http://jquery.com/) JavaScript libraries
 * Demonstrate single code maintenance Web pages
 * Incorporate search, edit, add, and delete Web pages for hierarchical data
 * Production mode features for browser performance
