@@ -2,6 +2,7 @@ package com.github.restmvc;
 
 import java.util.Enumeration;
 
+import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.core.Context;
@@ -13,33 +14,37 @@ public abstract class AbstractJaxrs {
 	@Context
 	protected HttpServletRequest request;
 
-	public void setAttribute(String name, Object value) {
+	protected void setAttribute(String name, Object value) {
 		request.setAttribute(name, value);
 	}
 
-	public void removeAttribute(String name) {
+	protected void removeAttribute(String name) {
 		request.removeAttribute(name);
 	}
 
-	public Enumeration<String> getParameterNames() {
+	protected Enumeration<String> getParameterNames() {
 		return request.getParameterNames();
 	}
 
-	public String[] getParameterValues(String name) {
+	protected String[] getParameterValues(String name) {
 		return request.getParameterValues(name);
 	}
 
-	public HttpSession getSession() {
+	protected HttpSession getSession() {
 		return request.getSession();
 	}
 
-	public HttpSession getSession(boolean create) {
+	protected HttpSession getSession(boolean create) {
 		return request.getSession(create);
 	}
 
-	public String getViewContextPath(String additionalUriTemplatePrefix,
+	protected String getViewContextPath(String additionalUriTemplatePrefix,
 			String viewUriTemplate) {
 		if ((viewUriTemplate == null) || (viewUriTemplate.trim().length() == 0)) {
+			return "";
+		}
+
+		if (!validRequest()) {
 			return "";
 		}
 
@@ -71,10 +76,14 @@ public abstract class AbstractJaxrs {
 		return path.toString();
 	}
 
-	public String getResourceContextPath(String additionalUriTemplatePrefix,
+	protected String getResourceContextPath(String additionalUriTemplatePrefix,
 			String resourceUriTemplate) {
 		if ((resourceUriTemplate == null)
 				|| (resourceUriTemplate.trim().length() == 0)) {
+			return "";
+		}
+
+		if (!validRequest()) {
 			return "";
 		}
 
@@ -104,5 +113,26 @@ public abstract class AbstractJaxrs {
 
 		path.append(resourceUriTemplate.trim());
 		return path.toString();
+	}
+
+	private boolean validRequest() {
+		if ((request != null) && (request.getContextPath() != null)) {
+			return true;
+		}
+
+		if ((FacesContext.getCurrentInstance() == null)
+				|| !(FacesContext.getCurrentInstance().getExternalContext()
+						.getRequest() instanceof HttpServletRequest)) {
+			return false;
+		}
+
+		request = (HttpServletRequest) (FacesContext.getCurrentInstance()
+				.getExternalContext().getRequest());
+
+		if ((request != null) && (request.getContextPath() != null)) {
+			return true;
+		}
+
+		return false;
 	}
 }

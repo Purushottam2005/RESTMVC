@@ -1,10 +1,12 @@
 package com.github.restmvc.bean;
 
+import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 
 @Named
+@ManagedBean
 public class AssetBean {
 
 	public static final String PATH_IMG = "/img";

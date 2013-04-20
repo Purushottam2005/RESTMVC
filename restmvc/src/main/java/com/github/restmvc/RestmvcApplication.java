@@ -6,6 +6,7 @@ import java.util.Set;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
+import com.github.restmvc.view.DiscountCodeBean;
 import com.github.restmvc.view.ErrorBean;
 import com.github.restmvc.view.WelcomeBean;
 
@@ -21,6 +22,7 @@ public class RestmvcApplication extends Application {
 		Set<Class<?>> jaxrsClasses = new HashSet<Class<?>>();
 
 		// JAX-RS Views
+		jaxrsClasses.add(DiscountCodeBean.class);
 		jaxrsClasses.add(ErrorBean.class);
 		jaxrsClasses.add(WelcomeBean.class);
 

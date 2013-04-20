@@ -1,6 +1,7 @@
 package com.github.restmvc.view;
 
 import javax.ejb.Stateless;
+import javax.faces.bean.ManagedBean;
 import javax.inject.Named;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -11,6 +12,7 @@ import com.github.restmvc.ViewableTemplate;
 
 @Path(RestmvcApplication.URI_TEMPLATE_PREFIX_VIEW + WelcomeBean.URI_TEMPLATE)
 @Named
+@ManagedBean
 @Stateless
 public class WelcomeBean extends AbstractJaxrs {
 
@@ -19,7 +21,11 @@ public class WelcomeBean extends AbstractJaxrs {
 	@GET
 	public ViewableTemplate render() {
 		ViewableTemplate view = new ViewableTemplate(TEMPLATE_BASE_DIR
-				+ "/welcome.xhtml");
+				+ URI_TEMPLATE + ".xhtml");
 		return view;
+	}
+
+	public String getDiscountCodeUrl() {
+		return getViewContextPath(null, DiscountCodeBean.URI_TEMPLATE);
 	}
 }
