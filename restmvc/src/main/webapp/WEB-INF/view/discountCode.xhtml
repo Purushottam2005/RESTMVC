@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:rm="http://java.sun.com/jsf/composite/rm/component"
+  template="../template/viewTemplate.xhtml">
+
+  <ui:define name="viewTitle">Discount Code</ui:define>
+
+  <ui:define name="afterBodyStart">
+    <nav class="breadcrumb">
+      <ol>
+        <li itemscope="itemscope" itemtype="http://data-vocabulary.org/Breadcrumb">
+          <a href="#{discountCodeBean.welcomeUrl}" itemprop="url">
+            <span itemprop="title">Welcome</span>
+          </a>
+        </li>
+        <li itemscope="itemscope" itemtype="http://data-vocabulary.org/Breadcrumb">
+          <a href="" itemprop="url">
+            <span itemprop="title">Discount Code</span>
+          </a>
+        </li>
+      </ol>
+    </nav>
+  </ui:define>
+
+  <ui:define name="mainContent">
+
+  </ui:define>
+
+  <ui:define name="viewJS">
+    <rm:dataTablesJavaScriptLibrary />
+    <rm:jsonJavaScriptLibraries />
+  </ui:define>
+
+</ui:composition>
