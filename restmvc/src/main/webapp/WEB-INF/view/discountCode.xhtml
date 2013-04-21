@@ -24,12 +24,47 @@
   </ui:define>
 
   <ui:define name="mainContent">
-
+    <section style="margin-bottom: 1em;">
+      <table id="discountCodeTable"> 
+        <thead id="discountCodeTableHead"> 
+          <tr> 
+            <th>Discount Code</th> 
+            <th>Rate</th> 
+            <th>&#160;</th> 
+          </tr> 
+        </thead> 
+        <tbody id="discountCodeTableBody"> 
+          <tr> 
+            <td>discountCode.discountCode</td> 
+            <td>discountCode.rate</td> 
+            <td>&#160;Edit&#160; &#160;Delete&#160;</td> 
+          </tr> 
+        </tbody> 
+      </table> 
+    </section>
   </ui:define>
 
-  <ui:define name="viewJS">
+  <ui:define name="javaScriptLibraries">
     <rm:dataTablesJavaScriptLibrary />
     <rm:jsonJavaScriptLibraries />
+  </ui:define>
+
+  <ui:define name="beforeBodyEnd">
+    <script>
+      var discountCodeData = #{discountCodeBean.dataTablesJson};
+      $('#discountCodeTable').dataTable({
+        'aaData': discountCodeData,
+        'sPaginationType': 'full_numbers',
+        'aoColumns': [
+          {'mData': 'discountCode'},
+          {'mData': 'rate'},
+          {'mData': function(data, type, value) {
+            return '&#160;<a href="#" title="Select to edit" onclick="return false;">Edit</a>&#160; '
+              + '&#160;<a href="#" title="Select to delete" onclick="return false;">Delete</a>&#160;';
+          }, 'bSortable': false}  
+        ]
+      });
+    </script>
   </ui:define>
 
 </ui:composition>

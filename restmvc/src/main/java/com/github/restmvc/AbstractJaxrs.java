@@ -18,6 +18,10 @@ public abstract class AbstractJaxrs {
 		request.setAttribute(name, value);
 	}
 
+	protected Object getAttribute(String name) {
+		return request.getAttribute(name);
+	}
+
 	protected void removeAttribute(String name) {
 		request.removeAttribute(name);
 	}
@@ -38,13 +42,34 @@ public abstract class AbstractJaxrs {
 		return request.getSession(create);
 	}
 
+	protected boolean isValidRequest() {
+		if (request != null) {
+			return true;
+		}
+
+		if ((FacesContext.getCurrentInstance() == null)
+				|| !(FacesContext.getCurrentInstance().getExternalContext()
+						.getRequest() instanceof HttpServletRequest)) {
+			return false;
+		}
+
+		request = (HttpServletRequest) (FacesContext.getCurrentInstance()
+				.getExternalContext().getRequest());
+
+		if (request != null) {
+			return true;
+		}
+
+		return false;
+	}
+
 	protected String getViewContextPath(String additionalUriTemplatePrefix,
 			String viewUriTemplate) {
 		if ((viewUriTemplate == null) || (viewUriTemplate.trim().length() == 0)) {
 			return "";
 		}
 
-		if (!validRequest()) {
+		if (!isValidRequest()) {
 			return "";
 		}
 
@@ -83,7 +108,7 @@ public abstract class AbstractJaxrs {
 			return "";
 		}
 
-		if (!validRequest()) {
+		if (!isValidRequest()) {
 			return "";
 		}
 
@@ -113,26 +138,5 @@ public abstract class AbstractJaxrs {
 
 		path.append(resourceUriTemplate.trim());
 		return path.toString();
-	}
-
-	private boolean validRequest() {
-		if ((request != null) && (request.getContextPath() != null)) {
-			return true;
-		}
-
-		if ((FacesContext.getCurrentInstance() == null)
-				|| !(FacesContext.getCurrentInstance().getExternalContext()
-						.getRequest() instanceof HttpServletRequest)) {
-			return false;
-		}
-
-		request = (HttpServletRequest) (FacesContext.getCurrentInstance()
-				.getExternalContext().getRequest());
-
-		if ((request != null) && (request.getContextPath() != null)) {
-			return true;
-		}
-
-		return false;
 	}
 }
