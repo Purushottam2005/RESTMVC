@@ -2,10 +2,11 @@ package com.github.restmvc;
 
 import java.util.Enumeration;
 
-import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.core.Context;
+
+import org.omnifaces.util.Faces;
 
 public abstract class AbstractJaxrs {
 
@@ -14,53 +15,78 @@ public abstract class AbstractJaxrs {
 	@Context
 	protected HttpServletRequest request;
 
-	protected void setAttribute(String name, Object value) {
-		request.setAttribute(name, value);
-	}
-
-	protected Object getAttribute(String name) {
-		return request.getAttribute(name);
-	}
-
-	protected void removeAttribute(String name) {
-		request.removeAttribute(name);
-	}
-
-	protected Enumeration<String> getParameterNames() {
-		return request.getParameterNames();
-	}
-
-	protected String[] getParameterValues(String name) {
-		return request.getParameterValues(name);
-	}
-
-	protected HttpSession getSession() {
-		return request.getSession();
-	}
-
-	protected HttpSession getSession(boolean create) {
-		return request.getSession(create);
-	}
-
 	protected boolean isValidRequest() {
 		if (request != null) {
 			return true;
 		}
 
-		if ((FacesContext.getCurrentInstance() == null)
-				|| !(FacesContext.getCurrentInstance().getExternalContext()
-						.getRequest() instanceof HttpServletRequest)) {
+		try {
+			request = Faces.getRequest();
+		} catch (Exception e) {
 			return false;
 		}
-
-		request = (HttpServletRequest) (FacesContext.getCurrentInstance()
-				.getExternalContext().getRequest());
 
 		if (request != null) {
 			return true;
 		}
 
 		return false;
+	}
+
+	protected void setAttribute(String name, Object value) {
+		if (!isValidRequest()) {
+			return;
+		}
+
+		request.setAttribute(name, value);
+	}
+
+	protected Object getAttribute(String name) {
+		if (!isValidRequest()) {
+			return null;
+		}
+
+		return request.getAttribute(name);
+	}
+
+	protected void removeAttribute(String name) {
+		if (!isValidRequest()) {
+			return;
+		}
+
+		request.removeAttribute(name);
+	}
+
+	protected Enumeration<String> getParameterNames() {
+		if (!isValidRequest()) {
+			return null;
+		}
+
+		return request.getParameterNames();
+	}
+
+	protected String[] getParameterValues(String name) {
+		if (!isValidRequest()) {
+			return null;
+		}
+
+		return request.getParameterValues(name);
+	}
+
+	protected HttpSession getSession() {
+		if (!isValidRequest()) {
+			return null;
+		}
+
+		return request.getSession();
+	}
+
+	protected HttpSession getSession(boolean create) {
+		if (!isValidRequest()) {
+			return null;
+		}
+
+		return request.getSession(create);
 	}
 
 	protected String getViewContextPath(String additionalUriTemplatePrefix,
