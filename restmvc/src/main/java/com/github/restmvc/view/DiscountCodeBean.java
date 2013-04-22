@@ -38,12 +38,15 @@ public class DiscountCodeBean extends AbstractJaxrs {
 		ViewableTemplate view = new ViewableTemplate(TEMPLATE_BASE_DIR
 				+ URI_TEMPLATE + ".xhtml");
 
-		TypedQuery<DiscountCode> query = em.createNamedQuery(
-				DiscountCode.FIND_ALL, DiscountCode.class);
-		List<DiscountCode> disCodeList = query.getResultList();
-		setAttribute(REQ_ATTR_DISCOUNT_CODE_LIST, disCodeList);
+		setAttribute(REQ_ATTR_DISCOUNT_CODE_LIST, getAllDiscountCodeList());
 
 		return view;
+	}
+
+	public List<DiscountCode> getAllDiscountCodeList() {
+		TypedQuery<DiscountCode> query = em.createNamedQuery(
+				DiscountCode.FIND_ALL, DiscountCode.class);
+		return query.getResultList();
 	}
 
 	public String getDataTablesJson() {
