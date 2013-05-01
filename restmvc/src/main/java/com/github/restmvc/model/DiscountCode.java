@@ -18,7 +18,7 @@ import javax.persistence.Table;
 import org.codehaus.jackson.annotate.JsonAutoDetect;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 
-import com.github.restmvc.TwoDecimalSerializer;
+import com.github.restmvc.json.TwoDecimalSerializer;
 
 /**
  *

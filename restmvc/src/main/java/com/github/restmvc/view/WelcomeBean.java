@@ -6,9 +6,9 @@ import javax.inject.Named;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 
-import com.github.restmvc.AbstractJaxrs;
-import com.github.restmvc.RestmvcApplication;
-import com.github.restmvc.ViewableTemplate;
+import com.github.restmvc.jaxrs.AbstractJaxrs;
+import com.github.restmvc.jaxrs.RestmvcApplication;
+import com.github.restmvc.jaxrs.ViewableTemplate;
 
 @Path(RestmvcApplication.URI_TEMPLATE_PREFIX_VIEW + WelcomeBean.URI_TEMPLATE)
 @Named
@@ -27,5 +27,9 @@ public class WelcomeBean extends AbstractJaxrs {
 
 	public String getDiscountCodeUrl() {
 		return getViewContextPath(null, DiscountCodeBean.URI_TEMPLATE);
+	}
+
+	public String getKitchenSinkUrl() {
+		return getViewContextPath(null, KitchenSinkBean.URI_TEMPLATE);
 	}
 }

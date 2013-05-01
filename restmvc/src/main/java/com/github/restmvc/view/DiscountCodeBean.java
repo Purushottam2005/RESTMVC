@@ -14,10 +14,10 @@ import javax.ws.rs.Path;
 
 import org.codehaus.jackson.map.ObjectMapper;
 
-import com.github.restmvc.AbstractJaxrs;
-import com.github.restmvc.RestmvcApplication;
 import com.github.restmvc.RestmvcLogger;
-import com.github.restmvc.ViewableTemplate;
+import com.github.restmvc.jaxrs.AbstractJaxrs;
+import com.github.restmvc.jaxrs.RestmvcApplication;
+import com.github.restmvc.jaxrs.ViewableTemplate;
 import com.github.restmvc.model.DiscountCode;
 
 @Path(RestmvcApplication.URI_TEMPLATE_PREFIX_VIEW

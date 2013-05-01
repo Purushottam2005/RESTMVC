@@ -6,15 +6,26 @@
 
   <ui:define name="viewTitle">Discount Code</ui:define>
 
+  <ui:define name="beforeHeadEnd">
+    <style>
+      .breadcrumbs li.crumb-active a {
+        text-decoration: none;
+      }
+      .breadcrumbs li.crumb-active a:hover {
+        color: gray;
+      }
+    </style>
+  </ui:define>
+
   <ui:define name="afterBodyStart">
-    <nav class="breadcrumb">
-      <ol>
+    <nav class="container">
+      <ol class="breadcrumbs">
         <li itemscope="itemscope" itemtype="http://data-vocabulary.org/Breadcrumb">
           <a href="#{discountCodeBean.welcomeUrl}" itemprop="url">
             <span itemprop="title">Welcome</span>
           </a>
         </li>
-        <li itemscope="itemscope" itemtype="http://data-vocabulary.org/Breadcrumb">
+        <li itemscope="itemscope" itemtype="http://data-vocabulary.org/Breadcrumb" class="crumb-active">
           <a href="" itemprop="url">
             <span itemprop="title">Discount Code</span>
           </a>

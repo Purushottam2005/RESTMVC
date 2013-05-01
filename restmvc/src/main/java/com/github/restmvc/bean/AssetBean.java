@@ -9,15 +9,48 @@ import javax.servlet.http.HttpServletRequest;
 @ManagedBean
 public class AssetBean {
 
-	public static final String PATH_IMG = "/img";
+	public static final String PATH_CSS = "/css";
+	public static final String PATH_IMAGES = "/images";
 	public static final String PATH_JS = "/js";
 
-	public String getImgUrl(String image) {
+	public String getCssUrl(String css) {
+		if ((css == null) || (css.trim().length() == 0)) {
+			return "";
+		}
+
+		return getAssetUrl(css, PATH_CSS);
+	}
+
+	public String getFontAwesome_IE7_CssUrl() {
+		return getCssUrl("font-awesome-ie7.min.css");
+	}
+
+	public String getGroundworkCssUrl() {
+		return getCssUrl("groundwork.css");
+	}
+
+	public String getGroundwork_IE_CssUrl() {
+		return getCssUrl("groundwork-ie.css");
+	}
+
+	public String getNoDatauriCssUrl() {
+		return getCssUrl("no-datauri.css");
+	}
+
+	public String getNoSvgCssUrl() {
+		return getCssUrl("no-svg.css");
+	}
+
+	public String getPlaceholderPolyfillCssUrl() {
+		return getCssUrl("placeholder_polyfill.min.css");
+	}
+
+	public String getImageUrl(String image) {
 		if ((image == null) || (image.trim().length() == 0)) {
 			return "";
 		}
 
-		return getAssetUrl(image, PATH_IMG);
+		return getAssetUrl(image, PATH_IMAGES);
 	}
 
 	public String getJsUrl(String js) {
@@ -28,28 +61,48 @@ public class AssetBean {
 		return getAssetUrl(js, PATH_JS);
 	}
 
+	public String getGroundworkAllJsUrl() {
+		return getJsUrl("groundwork.all.js");
+	}
+
 	public String getJqueryJsUrl() {
 		return getJsUrl("jquery-1.9.1.min.js");
 	}
 
-	public String getJqueryDataTablesJsUrl() {
-		return getJsUrl("jquery.dataTables-1.9.4.min.js");
-	}
-
-	public String getJqueryJsonJsUrl() {
-		return getJsUrl("jquery.json-2.4.min.js");
-	}
-
-	public String getJqueryRestJsUrl() {
-		return getJsUrl("jquery.rest-0.0.4.min.js");
-	}
-
-	public String getJquerySerializeJsonJsUrl() {
-		return getJsUrl("jquery.serializeJSON-1.0.1.min.js");
-	}
-
 	public String getModernizrJsUrl() {
 		return getJsUrl("modernizr-2.6.2.min.js");
+	}
+
+	public String getPluginsJqueryCycle2JsUrl() {
+		return getJsUrl("plugins/jquery.cycle2.js");
+	}
+
+	public String getPluginsJqueryDataTablesJsUrl() {
+		return getJsUrl("plugins/jquery.dataTables-1.9.4.min.js");
+	}
+
+	public String getPluginsJqueryJsonJsUrl() {
+		return getJsUrl("plugins/jquery.json-2.4.min.js");
+	}
+
+	public String getPluginsJqueryRestJsUrl() {
+		return getJsUrl("plugins/jquery.rest-0.0.4.min.js");
+	}
+
+	public String getPluginsJquerySerializeJsonJsUrl() {
+		return getJsUrl("plugins/jquery.serializeJSON-1.0.1.min.js");
+	}
+
+	public String getPluginsPlaceholder_polyfillJqueryJsUrl() {
+		return getJsUrl("plugins/placeholder_polyfill.jquery-2.0.6.min.js");
+	}
+
+	public String getRespondJsUrl() {
+		return getJsUrl("respond-1.1.0.min.js");
+	}
+
+	public String getSelectivizrJsUrl() {
+		return getJsUrl("selectivizr-1.0.2.min.js");
 	}
 
 	protected String getAssetUrl(String asset, String assetPath) {
