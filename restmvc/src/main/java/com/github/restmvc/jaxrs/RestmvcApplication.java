@@ -7,6 +7,7 @@ import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
 import com.github.restmvc.jaxrs.provider.JsonMessageProvider;
+import com.github.restmvc.jaxrs.provider.NotFoundExceptionMapper;
 import com.github.restmvc.jaxrs.provider.ViewableTemplateMessageBodyWriter;
 import com.github.restmvc.view.DiscountCodeBean;
 import com.github.restmvc.view.ErrorBean;
@@ -32,6 +33,7 @@ public class RestmvcApplication extends Application {
 
 		// JAX-RS Providers, MessageBodyWriters, and MessageBodyReaders
 		jaxrsClasses.add(JsonMessageProvider.class);
+		jaxrsClasses.add(NotFoundExceptionMapper.class);
 		jaxrsClasses.add(ViewableTemplateMessageBodyWriter.class);
 
 		return jaxrsClasses;
